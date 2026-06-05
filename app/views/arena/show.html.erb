@@ -1,0 +1,946 @@
+<% content_for :title, "мп3плеєрс арена" %>
+<% content_for :head do %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700;800&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<% end %>
+<% avatar_images = {
+    "kolyan" => asset_path("avatars/kolyan.png"),
+    "denchik" => asset_path("avatars/denchik.png"),
+    "yaroslav" => asset_path("avatars/yaroslav.png"),
+    "yura" => asset_path("avatars/yura.png"),
+    "fredy" => asset_path("avatars/fredy.png"),
+  }
+%>
+
+<div class="disclaimer-overlay is-visible" data-disclaimer role="dialog" aria-modal="true" aria-labelledby="disclaimer-title">
+  <div class="disclaimer-backdrop" data-disclaimer-close></div>
+  <div class="disclaimer-panel">
+    <p class="eyebrow">DISCLAIMER // ENTRY BRIEF</p>
+    <h2 id="disclaimer-title">Що це взагалі таке</h2>
+    <p class="disclaimer-copy">
+      <strong>мп3плеєрс арена</strong> — це фанова дуельна арена, зібрана з вашого Telegram-чату.
+      Реальні імена, кастомні ролі, чат-титули, стиль спілкування і локальний лор були
+      перетворені на окремих бійців.
+    </p>
+    <div class="disclaimer-grid">
+      <div class="disclaimer-block">
+        <span>Основа</span>
+        <p>Ростер зібраний з учасників чату, їхніх Telegram-імен і внутрішніх назв.</p>
+      </div>
+      <div class="disclaimer-block">
+        <span>Як це зроблено</span>
+        <p>Стати, швидкість, атаки, скіли й перки підібрані під вайб кожного в переписці, а не як випадкові RPG-параметри.</p>
+      </div>
+      <div class="disclaimer-block">
+        <span>Що бачиш в арені</span>
+        <p>Бій симулюється на бекенді, а інтерфейс програє результат як матч між вашими чат-альтер его.</p>
+      </div>
+      <div class="disclaimer-block">
+        <span>Важливо</span>
+        <p>Це жартівливий внутрішній проєкт: персонажі, баланс і назви зроблені для фану, а не “об’єктивної” оцінки людей.</p>
+      </div>
+    </div>
+    <div class="disclaimer-actions">
+      <button class="action-button" type="button" data-disclaimer-confirm>Увійти в арену</button>
+    </div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="brand-mark">мп3плеєрс арена</div>
+  <div class="topbar-actions">
+    <button
+      class="topbar-button is-coming-soon"
+      type="button"
+      aria-label="Archive"
+      aria-disabled="true"
+      data-disabled-hint="In progress"
+      title="In progress"
+    >
+      <span class="material-symbols-outlined">history_edu</span>
+    </button>
+    <button
+      class="topbar-button is-coming-soon"
+      type="button"
+      aria-label="Profile"
+      aria-disabled="true"
+      data-disabled-hint="In progress"
+      title="In progress"
+    >
+      <span class="material-symbols-outlined">account_circle</span>
+    </button>
+  </div>
+</header>
+
+<div class="arena-page">
+  <div class="page-crumbs" aria-label="Breadcrumb">
+    <span>мп3плеєрс арена</span>
+    <span class="page-crumbs-separator">/</span>
+    <strong>duel</strong>
+  </div>
+
+  <section
+    class="duel-app"
+    data-duel-app
+    data-roster="<%= json_escape(@roster.to_json) %>"
+    data-avatar-images="<%= json_escape(avatar_images.to_json) %>"
+    data-default-left="<%= @selected_keys[0] %>"
+    data-default-right="<%= @selected_keys[1] %>"
+  >
+    <div class="match-strip">
+      <p class="match-strip-label">MATCH SETUP</p>
+        <div class="selected-duelists">
+          <div class="selected-slot" data-slot-summary="left" data-slot-target="left" role="button" tabindex="0" aria-pressed="true">
+            <span class="selected-slot-label">Боєць 1</span>
+            <strong data-slot-name="left">Не обрано</strong>
+            <small data-slot-role="left">Оберіть першого бійця</small>
+          </div>
+          <div class="selected-slot selected-slot-vs">VS</div>
+          <div class="selected-slot" data-slot-summary="right" data-slot-target="right" role="button" tabindex="0" aria-pressed="false">
+            <span class="selected-slot-label">Боєць 2</span>
+            <strong data-slot-name="right">Не обрано</strong>
+            <small data-slot-role="right">Оберіть другого бійця</small>
+          </div>
+        </div>
+      </div>
+
+    <div class="duel-workspace">
+      <aside class="roster-column">
+        <div class="column-label">VAULT</div>
+        <div class="roster-icons" data-roster-icons>
+          <% @roster.each do |fighter| %>
+            <button
+              class="roster-icon roster-icon-<%= fighter[:theme_key] %>"
+              data-focus-hero="<%= fighter[:key] %>"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="roster-icon-avatar">
+                <% if avatar_images[fighter[:key]] %>
+                  <img class="roster-icon-photo" src="<%= avatar_images[fighter[:key]] %>" alt="<%= fighter[:name] %>">
+                <% else %>
+                  <span class="fighter-crest-letter"><%= fighter[:aka].first %></span>
+                <% end %>
+              </span>
+              <span class="roster-icon-name"><%= fighter[:name] %></span>
+            </button>
+          <% end %>
+        </div>
+      </aside>
+
+      <section class="arena-column">
+        <div class="controls">
+          <button class="action-button" data-action="start" disabled title="Select both fighters first">Start Fight</button>
+          <button class="action-button action-button-secondary" data-action="reset">Reset</button>
+        </div>
+
+        <div class="battle-layout">
+          <section class="arena-shell">
+            <div class="arena-header">
+              <p>Arena Simulation</p>
+              <span data-round-label>Ready</span>
+            </div>
+
+            <div class="arena-board" data-board>
+              <div class="arena-effects" data-effects></div>
+            </div>
+          </section>
+
+          <section class="log-shell">
+            <div class="log-header">
+              <h2>Kinetic Feed</h2>
+              <span data-winner-banner>Waiting to start</span>
+            </div>
+            <div class="combat-log" data-log></div>
+          </section>
+        </div>
+      </section>
+
+      <aside class="fighter-card fighter-detail-panel is-hidden" data-detail-panel aria-hidden="true">
+        <div class="column-label">DOSSIER</div>
+        <div class="fighter-card-topline">
+          <span class="fighter-badge" data-detail-badge></span>
+          <p class="fighter-label" data-detail-style></p>
+        </div>
+
+        <div class="fighter-card-header">
+          <div class="fighter-avatar" data-detail-avatar>
+            <span class="fighter-crest-letter" data-detail-crest></span>
+          </div>
+
+          <div class="fighter-heading">
+            <h2 data-detail-title></h2>
+            <p class="fighter-subtitle" data-detail-role></p>
+          </div>
+        </div>
+
+        <div class="fighter-selectors">
+          <button class="slot-button" data-select-current type="button">Обрати</button>
+        </div>
+
+        <div class="fighter-quick-stats">
+          <div class="fighter-quick-stat">
+            <span>Speed</span>
+            <strong data-detail-speed></strong>
+          </div>
+          <div class="fighter-quick-stat">
+            <span>Basic CD</span>
+            <strong data-detail-basic-cd></strong>
+          </div>
+          <div class="fighter-quick-stat">
+            <span>Skill CD</span>
+            <strong data-detail-skill-cd></strong>
+          </div>
+        </div>
+
+        <div class="meter-stack">
+          <div class="meter-label-row">
+            <span>HP</span>
+            <strong data-detail-hp></strong>
+          </div>
+          <div class="meter hp-meter">
+            <span data-detail-hp-bar></span>
+          </div>
+        </div>
+
+        <div class="meter-stack">
+          <div class="meter-label-row">
+            <span>MP</span>
+            <strong data-detail-mp></strong>
+          </div>
+          <div class="meter mp-meter">
+            <span data-detail-mp-bar></span>
+          </div>
+        </div>
+
+        <div class="fighter-abilities">
+          <div class="fighter-ability" data-detail-basic-card>
+            <span class="fighter-ability-label">Атака</span>
+            <strong data-detail-basic></strong>
+          </div>
+          <div class="fighter-ability" data-detail-skill-card>
+            <span class="fighter-ability-label">Скіл</span>
+            <strong data-detail-skill></strong>
+          </div>
+          <div class="fighter-ability fighter-ability-wide" data-detail-perk-card>
+            <span class="fighter-ability-label">Перк</span>
+            <strong data-detail-perk></strong>
+          </div>
+        </div>
+
+        <p class="perk-text" data-detail-perk-text></p>
+        <p class="fighter-flavor" data-detail-flavor></p>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<script>
+  (() => {
+    const disclaimer = document.querySelector("[data-disclaimer]");
+    const closeDisclaimer = () => {
+      if (!disclaimer) return;
+      disclaimer.classList.remove("is-visible");
+      document.body.classList.remove("has-disclaimer-open");
+    };
+
+    if (disclaimer) {
+      document.body.classList.add("has-disclaimer-open");
+      disclaimer.querySelector("[data-disclaimer-confirm]")?.addEventListener("click", closeDisclaimer);
+      disclaimer.querySelector("[data-disclaimer-close]")?.addEventListener("click", closeDisclaimer);
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeDisclaimer();
+      });
+    }
+
+    const root = document.querySelector("[data-duel-app]");
+    if (!root) return;
+
+    const board = root.querySelector("[data-board]");
+    const effectsLayer = root.querySelector("[data-effects]");
+    const logNode = root.querySelector("[data-log]");
+    const roundLabel = root.querySelector("[data-round-label]");
+    const winnerBanner = root.querySelector("[data-winner-banner]");
+    const detailPanel = root.querySelector("[data-detail-panel]");
+    const startButton = document.querySelector('[data-action="start"]');
+    const resetButton = document.querySelector('[data-action="reset"]');
+    const roster = JSON.parse(root.dataset.roster);
+    const avatarImages = JSON.parse(root.dataset.avatarImages || "{}");
+    const rosterByKey = Object.fromEntries(roster.map((fighter) => [fighter.key, fighter]));
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+    const tickLength = 180;
+    const selectedSlots = {
+      left: root.dataset.defaultLeft || null,
+      right: root.dataset.defaultRight || null
+    };
+    let activeSlot = "left";
+    let focusedHeroKey = root.dataset.defaultLeft || null;
+
+    const themes = {
+      kolyan: { core: "#ffd166", glow: "#f59e0b", soft: "#fff0b3", panel: "#7b4b0a", letter: "#241100" },
+      yaroslav: { core: "#69dbff", glow: "#2563eb", soft: "#d9f8ff", panel: "#0c4a6e", letter: "#041a28" },
+      yura: { core: "#ff8a5b", glow: "#d62828", soft: "#ffe2d4", panel: "#7f1d1d", letter: "#290504" },
+      denchik: { core: "#bef264", glow: "#65a30d", soft: "#f0ffd4", panel: "#365314", letter: "#132005" },
+      fredy: { core: "#d8b4fe", glow: "#7c3aed", soft: "#f5e9ff", panel: "#4c1d95", letter: "#170625" }
+    };
+
+    let timer = null;
+    let rafId = null;
+    let state = [];
+    let previousState = [];
+    let visualState = [];
+    let pendingRounds = [];
+    let isRunning = false;
+    let segmentStartedAt = performance.now();
+    let effectTimers = [];
+
+    const fighterNode = (key) => board.querySelector(`[data-fighter="${key}"]`);
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+    const animationTimers = new Map();
+    const detailNode = (selector) => detailPanel.querySelector(selector);
+
+    const selectedRoster = () => [rosterByKey[selectedSlots.left], rosterByKey[selectedSlots.right]].filter(Boolean);
+    const hasCompleteSelection = () => Boolean(selectedSlots.left && selectedSlots.right);
+    const nextSlotAfter = (slot) => (slot === "left" ? "right" : "left");
+    const cloneState = (fightersState) => fightersState.map((fighter) => ({ ...fighter }));
+    const findFighter = (fightersState, key) => fightersState.find((fighter) => fighter.key === key);
+    const queueEffectTimer = (callback, delay) => {
+      const timeoutId = window.setTimeout(callback, delay);
+      effectTimers.push(timeoutId);
+    };
+    const avatarMarkup = (fighter, imageClass = "fighter-photo", fallbackClass = "fighter-crest-letter") => {
+      const avatarUrl = avatarImages[fighter.key];
+      if (avatarUrl) {
+        return `<img class="${imageClass}" src="${avatarUrl}" alt="${fighter.name}">`;
+      }
+
+      return `<span class="${fallbackClass}">${fighter.aka[0]}</span>`;
+    };
+
+    const freshState = () => {
+      if (!hasCompleteSelection()) return [];
+
+      const [left, right] = selectedRoster();
+      return [
+        { key: left.key, name: left.name, aka: left.aka, hp: left.hp, mp: left.mp, x: 24.0, y: 30.0 },
+        { key: right.key, name: right.name, aka: right.aka, hp: right.hp, mp: right.mp, x: 76.0, y: 68.0 }
+      ];
+    };
+
+    const createBoardFighters = () => {
+      board.querySelectorAll(".arena-fighter").forEach((node) => node.remove());
+
+      selectedRoster().forEach((fighter) => {
+        const theme = themes[fighter.theme_key];
+        const node = document.createElement("div");
+        node.className = "arena-fighter";
+        node.dataset.fighter = fighter.key;
+        node.style.setProperty("--fighter-core", theme.core);
+        node.style.setProperty("--fighter-glow", theme.glow);
+        node.style.setProperty("--fighter-soft", theme.soft);
+        node.style.setProperty("--fighter-letter", theme.letter);
+        node.innerHTML = avatarMarkup(fighter, "fighter-token-photo", "fighter-token-label");
+        board.appendChild(node);
+      });
+    };
+
+    const syncRosterMeters = () => {
+      const focusedHero = rosterByKey[focusedHeroKey];
+      if (!focusedHero) return;
+
+      const live = state.find((entry) => entry.key === focusedHero.key);
+      const hp = live ? live.hp : focusedHero.hp;
+      const mp = live ? live.mp : focusedHero.mp;
+      detailNode("[data-detail-hp]").textContent = hp;
+      detailNode("[data-detail-mp]").textContent = mp;
+      detailNode("[data-detail-hp-bar]").style.width = `${clamp(hp, 0, 100)}%`;
+      detailNode("[data-detail-mp-bar]").style.width = `${clamp(mp, 0, 100)}%`;
+    };
+
+    const syncDetailPanel = () => {
+      const fighter = rosterByKey[focusedHeroKey];
+      if (!fighter) {
+        detailPanel.className = "fighter-card fighter-detail-panel is-hidden";
+        detailPanel.setAttribute("aria-hidden", "true");
+        return;
+      }
+
+      const theme = themes[fighter.theme_key];
+      detailPanel.setAttribute("aria-hidden", "false");
+      detailPanel.className = `fighter-card fighter-detail-panel fighter-card-${fighter.theme_key}`;
+      detailNode("[data-detail-badge]").textContent = fighter.key.toUpperCase();
+      detailNode("[data-detail-style]").textContent = fighter.style;
+      detailNode("[data-detail-avatar]").className = `fighter-avatar fighter-avatar-${fighter.theme_key}`;
+      detailNode("[data-detail-avatar]").innerHTML = avatarMarkup(fighter);
+      detailNode("[data-detail-title]").textContent = `${fighter.name} a.k.a. «${fighter.aka}»`;
+      detailNode("[data-detail-role]").textContent = fighter.role;
+      detailNode("[data-detail-speed]").textContent = fighter.speed;
+      detailNode("[data-detail-basic-cd]").textContent = fighter.attack_cooldown;
+      detailNode("[data-detail-skill-cd]").textContent = fighter.skill_cooldown;
+      detailNode("[data-detail-basic]").textContent = fighter.basic_attack;
+      detailNode("[data-detail-skill]").textContent = fighter.skill_name;
+      detailNode("[data-detail-perk]").textContent = fighter.perk;
+      detailNode("[data-detail-basic-card]").dataset.tooltip = fighter.basic_text;
+      detailNode("[data-detail-skill-card]").dataset.tooltip = fighter.skill_text;
+      detailNode("[data-detail-perk-card]").dataset.tooltip = fighter.perk_text;
+      detailNode("[data-detail-perk-text]").textContent = fighter.perk_text;
+      detailNode("[data-detail-flavor]").textContent = fighter.flavor;
+
+      const selectButton = detailNode("[data-select-current]");
+      const leftSelected = selectedSlots.left === fighter.key;
+      const rightSelected = selectedSlots.right === fighter.key;
+      selectButton.classList.toggle("is-active-left", leftSelected);
+      selectButton.classList.toggle("is-active-right", rightSelected);
+      selectButton.textContent = leftSelected ? "Обрано як 1" : rightSelected ? "Обрано як 2" : `Обрати в ${activeSlot === "left" ? "1" : "2"}`;
+      selectButton.style.setProperty("--detail-core", theme.core);
+      selectButton.style.setProperty("--detail-glow", theme.glow);
+      syncRosterMeters();
+    };
+
+    const render = () => {
+      syncRosterMeters();
+      effectsLayer.querySelectorAll(".arena-trail-segment").forEach((node) => node.remove());
+
+      visualState.forEach((fighter) => {
+        const source = state.find((entry) => entry.key === fighter.key) || fighter;
+        const node = fighterNode(fighter.key);
+        if (!node) return;
+        node.style.left = `calc(${fighter.x}% - 24px)`;
+        node.style.top = `calc(${fighter.y}% - 24px)`;
+        node.classList.toggle("is-down", source.hp <= 0);
+        node.classList.toggle("is-glimmer", (source.glimmer_rounds || 0) > 0);
+        node.classList.toggle("is-vamp", (source.vamp_attacks || 0) > 0);
+        node.classList.toggle("is-trailing", (source.trail_rounds || 0) > 0);
+        node.dataset.rampTier = source.ramp_stacks || 0;
+      });
+
+      state.forEach((fighter) => {
+        (fighter.trail_segments || []).forEach((segment) => {
+          const x1 = (board.clientWidth * segment.x1) / 100;
+          const y1 = (board.clientHeight * segment.y1) / 100;
+          const x2 = (board.clientWidth * segment.x2) / 100;
+          const y2 = (board.clientHeight * segment.y2) / 100;
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const length = Math.sqrt((dx * dx) + (dy * dy));
+          const angle = Math.atan2(dy, dx);
+          const theme = themes[rosterByKey[fighter.key].theme_key];
+          const trailNode = document.createElement("div");
+          trailNode.className = "arena-trail-segment";
+          trailNode.style.setProperty("--trail-x", `${x1}px`);
+          trailNode.style.setProperty("--trail-y", `${y1}px`);
+          trailNode.style.setProperty("--trail-length", `${length}px`);
+          trailNode.style.setProperty("--trail-angle", `${angle}rad`);
+          trailNode.style.setProperty("--trail-core", theme.core);
+          trailNode.style.setProperty("--trail-glow", theme.glow);
+          trailNode.style.setProperty("--trail-soft", theme.soft);
+          effectsLayer.appendChild(trailNode);
+        });
+      });
+    };
+
+    const syncVisualState = (now) => {
+      if (!visualState.length) {
+        visualState = cloneState(state);
+        return;
+      }
+
+      const progress = clamp((now - segmentStartedAt) / tickLength, 0, 1);
+      visualState = state.map((targetFighter) => {
+        const startFighter = findFighter(previousState, targetFighter.key) || targetFighter;
+        return {
+          ...targetFighter,
+          x: startFighter.x + ((targetFighter.x - startFighter.x) * progress),
+          y: startFighter.y + ((targetFighter.y - startFighter.y) * progress)
+        };
+      });
+    };
+
+    const ensureRenderLoop = () => {
+      if (rafId) return;
+
+      const frame = (now) => {
+        syncVisualState(now);
+        render();
+        rafId = window.requestAnimationFrame(frame);
+      };
+
+      rafId = window.requestAnimationFrame(frame);
+    };
+
+    const boardPoint = (fighter) => ({
+      x: (board.clientWidth * fighter.x) / 100,
+      y: (board.clientHeight * fighter.y) / 100
+    });
+
+    const travelVector = (attacker, defender) => {
+      const from = boardPoint(attacker);
+      const to = boardPoint(defender);
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+      const length = Math.sqrt((dx * dx) + (dy * dy));
+      const angle = Math.atan2(dy, dx);
+      return { from, to, dx, dy, length, angle };
+    };
+
+    const pulseNode = (key, className, duration) => {
+      const node = fighterNode(key);
+      if (!node) return;
+
+      const existingTimer = animationTimers.get(`${key}:${className}`);
+      if (existingTimer) window.clearTimeout(existingTimer);
+
+      node.classList.remove(className);
+      void node.offsetWidth;
+      node.classList.add(className);
+
+      const timeoutId = window.setTimeout(() => {
+        node.classList.remove(className);
+      }, duration);
+
+      animationTimers.set(`${key}:${className}`, timeoutId);
+    };
+
+    const spawnEffect = (className, styles, duration) => {
+      const node = document.createElement("div");
+      node.className = className;
+      Object.entries(styles).forEach(([property, value]) => node.style.setProperty(property, value));
+      effectsLayer.appendChild(node);
+      window.setTimeout(() => node.remove(), duration);
+    };
+
+    const spawnNamedEffect = (effectId, attacker, defender) => {
+      if (!effectId || !attacker || !defender) return;
+
+      const theme = themes[rosterByKey[attacker.key].theme_key];
+      const { from, to, length, angle } = travelVector(attacker, defender);
+      const lineStyles = {
+        "--effect-x": `${from.x}px`,
+        "--effect-y": `${from.y}px`,
+        "--effect-angle": `${angle}rad`,
+        "--effect-length": `${Math.max(34, length - 14)}px`,
+        "--effect-core": theme.core,
+        "--effect-glow": theme.glow,
+        "--effect-soft": theme.soft
+      };
+      const pointStyles = {
+        "--effect-x": `${to.x}px`,
+        "--effect-y": `${to.y}px`,
+        "--effect-angle": `${angle}rad`,
+        "--effect-core": theme.core,
+        "--effect-glow": theme.glow,
+        "--effect-soft": theme.soft
+      };
+      const actorStyles = {
+        "--effect-x": `${from.x}px`,
+        "--effect-y": `${from.y}px`,
+        "--effect-angle": `${angle}rad`,
+        "--effect-core": theme.core,
+        "--effect-glow": theme.glow,
+        "--effect-soft": theme.soft
+      };
+
+      switch (effectId) {
+        case "kolyan-basic":
+          spawnEffect("arena-effect arena-effect-kolyan-basic", lineStyles, 320);
+          break;
+        case "kolyan-skill":
+          spawnEffect("arena-effect arena-effect-kolyan-skill", lineStyles, 460);
+          break;
+        case "kolyan-perk":
+          spawnEffect("arena-effect arena-effect-kolyan-perk", actorStyles, 360);
+          break;
+        case "kolyan-mark":
+          spawnEffect("arena-effect arena-effect-kolyan-mark", pointStyles, 420);
+          break;
+        case "kolyan-read":
+          spawnEffect("arena-effect arena-effect-kolyan-read", pointStyles, 420);
+          break;
+        case "yaroslav-basic":
+          spawnEffect("arena-effect arena-effect-yaroslav-basic", lineStyles, 280);
+          break;
+        case "yaroslav-skill":
+          spawnEffect("arena-effect arena-effect-yaroslav-skill", lineStyles, 360);
+          break;
+        case "yaroslav-perk":
+          spawnEffect("arena-effect arena-effect-yaroslav-perk", actorStyles, 340);
+          break;
+        case "yaroslav-glimmer-on":
+          spawnEffect("arena-effect arena-effect-yaroslav-glimmer-on", actorStyles, 420);
+          break;
+        case "yaroslav-glimmer-tick":
+          spawnEffect("arena-effect arena-effect-yaroslav-glimmer-tick", actorStyles, 360);
+          break;
+        case "yaroslav-glimmer-return":
+          spawnEffect("arena-effect arena-effect-yaroslav-glimmer-return", actorStyles, 420);
+          break;
+        case "yura-basic":
+          spawnEffect("arena-effect arena-effect-yura-basic", lineStyles, 300);
+          break;
+        case "yura-skill":
+          spawnEffect("arena-effect arena-effect-yura-skill", lineStyles, 440);
+          break;
+        case "yura-perk":
+          spawnEffect("arena-effect arena-effect-yura-perk", actorStyles, 340);
+          break;
+        case "yura-vamp-on":
+          spawnEffect("arena-effect arena-effect-yura-vamp-on", actorStyles, 420);
+          break;
+        case "yura-vamp-drain":
+          spawnEffect("arena-effect arena-effect-yura-vamp-drain", lineStyles, 420);
+          break;
+        case "denchik-basic":
+          spawnEffect("arena-effect arena-effect-denchik-basic", lineStyles, 290);
+          break;
+        case "denchik-skill":
+          spawnEffect("arena-effect arena-effect-denchik-skill", lineStyles, 420);
+          break;
+        case "denchik-perk":
+          spawnEffect("arena-effect arena-effect-denchik-perk", actorStyles, 360);
+          break;
+        case "denchik-ramp":
+          spawnEffect("arena-effect arena-effect-denchik-ramp", actorStyles, 360);
+          break;
+        case "fredy-basic":
+          spawnEffect("arena-effect arena-effect-fredy-basic", lineStyles, 300);
+          break;
+        case "fredy-skill":
+          spawnEffect("arena-effect arena-effect-fredy-skill", lineStyles, 420);
+          break;
+        case "fredy-perk":
+          spawnEffect("arena-effect arena-effect-fredy-perk", pointStyles, 360);
+          break;
+        case "fredy-trail-on":
+          spawnEffect("arena-effect arena-effect-fredy-trail-on", actorStyles, 380);
+          break;
+        case "fredy-trail-arm":
+          spawnEffect("arena-effect arena-effect-fredy-trail-arm", actorStyles, 320);
+          break;
+        case "fredy-trail-hit":
+          spawnEffect("arena-effect arena-effect-fredy-trail-hit", pointStyles, 520);
+          break;
+        default:
+          spawnEffect("arena-effect arena-effect-impact", pointStyles, 300);
+      }
+    };
+
+    const spawnShieldEffect = (defender) => {
+      const point = boardPoint(defender);
+      const theme = themes[rosterByKey[defender.key].theme_key];
+      spawnEffect("arena-effect arena-effect-shield", {
+        "--effect-x": `${point.x}px`,
+        "--effect-y": `${point.y}px`,
+        "--effect-core": theme.soft,
+        "--effect-glow": theme.glow
+      }, 360);
+    };
+
+    const spawnImpactEffect = (defender, attackerKey) => {
+      const point = boardPoint(defender);
+      const theme = themes[rosterByKey[attackerKey].theme_key];
+      spawnEffect("arena-effect arena-effect-impact", {
+        "--effect-x": `${point.x}px`,
+        "--effect-y": `${point.y}px`,
+        "--effect-core": theme.core,
+        "--effect-glow": theme.glow,
+        "--effect-soft": theme.soft
+      }, 320);
+    };
+
+    const animateEvent = (event) => {
+      if (!event.animate) return;
+
+      const attacker = state.find((fighter) => fighter.key === event.animate.actor);
+      const defender = state.find((fighter) => fighter.key === event.animate.target);
+      if (!attacker || !defender) return;
+
+      const effectList = event.animate.effects || [];
+
+      if (!effectList.length) {
+        pulseNode(attacker.key, "is-casting", 300);
+      }
+
+      effectList.forEach((effectEntry) => {
+        const actorNode = state.find((fighter) => fighter.key === effectEntry.actor) || attacker;
+        const targetNode = state.find((fighter) => fighter.key === effectEntry.target) || defender;
+        pulseNode(actorNode.key, effectEntry.role === "perk" ? "is-perking" : "is-casting", effectEntry.role === "perk" ? 360 : 320);
+        spawnNamedEffect(effectEntry.effect, actorNode, targetNode);
+      });
+
+      if (event.animate.result === "block") {
+        pulseNode(defender.key, "is-guarding", 320);
+        spawnShieldEffect(defender);
+      } else if (event.animate.result === "hit") {
+        pulseNode(defender.key, "is-impact", 260);
+        spawnImpactEffect(defender, attacker.key);
+      }
+    };
+
+    const log = (message, accent = "") => {
+      const entry = document.createElement("p");
+      entry.className = `log-entry ${accent}`.trim();
+      entry.textContent = message;
+      logNode.prepend(entry);
+
+      while (logNode.children.length > 14) {
+        logNode.removeChild(logNode.lastChild);
+      }
+    };
+
+    const groupRounds = (events) => {
+      const rounds = [];
+      events.forEach((event) => {
+        let roundEntry = rounds[rounds.length - 1];
+        if (!roundEntry || roundEntry.round !== event.round) {
+          roundEntry = { round: event.round, state: event.state, events: [] };
+          rounds.push(roundEntry);
+        }
+        roundEntry.state = event.state;
+        roundEntry.events.push(event);
+      });
+      return rounds;
+    };
+
+    const refreshSelectionUI = () => {
+      ["left", "right"].forEach((slot) => {
+        const fighter = rosterByKey[selectedSlots[slot]];
+        const slotName = document.querySelector(`[data-slot-name="${slot}"]`);
+        const slotRole = document.querySelector(`[data-slot-role="${slot}"]`);
+        const slotNode = document.querySelector(`[data-slot-summary="${slot}"]`);
+
+        if (fighter) {
+          slotName.textContent = `${fighter.name} a.k.a. «${fighter.aka}»`;
+          slotRole.textContent = fighter.role;
+        } else {
+          slotName.textContent = "Не обрано";
+          slotRole.textContent = slot === "left" ? "Оберіть першого бійця" : "Оберіть другого бійця";
+        }
+
+        slotNode.classList.toggle("is-empty", !fighter);
+        slotNode.classList.toggle("is-active-slot", activeSlot === slot);
+        slotNode.setAttribute("aria-pressed", activeSlot === slot ? "true" : "false");
+      });
+
+      root.querySelectorAll("[data-focus-hero]").forEach((button) => {
+        const key = button.dataset.focusHero;
+        const leftSelected = selectedSlots.left === key;
+        const rightSelected = selectedSlots.right === key;
+        const isFocused = focusedHeroKey === key;
+        button.classList.toggle("is-slot-left", leftSelected);
+        button.classList.toggle("is-slot-right", rightSelected);
+        button.classList.toggle("is-focused", isFocused);
+        button.setAttribute("aria-pressed", isFocused ? "true" : "false");
+
+        if (leftSelected && rightSelected) {
+          button.dataset.selection = "1 + 2";
+        } else if (leftSelected) {
+          button.dataset.selection = "1";
+        } else if (rightSelected) {
+          button.dataset.selection = "2";
+        } else {
+          button.dataset.selection = "";
+        }
+      });
+
+      startButton.disabled = isRunning || !hasCompleteSelection();
+      startButton.title = hasCompleteSelection() ? "" : "Select both fighters first";
+      syncDetailPanel();
+    };
+
+    const reset = ({ preserveActiveSlot = false } = {}) => {
+      clearTimeout(timer);
+      timer = null;
+      pendingRounds = [];
+      effectTimers.forEach((timeoutId) => window.clearTimeout(timeoutId));
+      effectTimers = [];
+      isRunning = false;
+      startButton.disabled = !hasCompleteSelection();
+      if (!preserveActiveSlot) activeSlot = "left";
+      createBoardFighters();
+      state = freshState();
+      previousState = cloneState(state);
+      visualState = cloneState(state);
+      segmentStartedAt = performance.now();
+      roundLabel.textContent = hasCompleteSelection() ? "Ready" : "Select fighters";
+      winnerBanner.textContent = hasCompleteSelection() ? "Waiting to start" : "Choose two fighters";
+      logNode.innerHTML = "";
+      log(hasCompleteSelection() ? "Арена готова. Обрані герої чекають на старт." : "Оберіть двох бійців, щоб запустити дуель.");
+      refreshSelectionUI();
+      render();
+    };
+
+    const finishFight = (result) => {
+      isRunning = false;
+      startButton.disabled = !hasCompleteSelection();
+      const champ = result.winner;
+      roundLabel.textContent = `Finished in ${result.rounds} rounds`;
+      winnerBanner.textContent = champ ? `«${champ.aka}» перемагає` : "Double knockout";
+      log(champ ? `Перемагає ${champ.name} — «${champ.aka}».` : "Обидва герої падають одночасно.");
+    };
+
+    const playRoundEffects = (roundFrame) => {
+      const visibleEvents = roundFrame.events.filter((event) => event.animate || event.message);
+      if (!visibleEvents.length) return;
+
+      visibleEvents.forEach((event, index) => {
+        const delay = Math.round(((index + 1) / (visibleEvents.length + 1)) * tickLength * 0.78);
+        queueEffectTimer(() => {
+          animateEvent(event);
+          if (event.message) log(event.message, event.accent || "");
+        }, delay);
+      });
+    };
+
+    const playNextRound = (result) => {
+      if (!pendingRounds.length) {
+        finishFight(result);
+        return;
+      }
+
+      const roundFrame = pendingRounds.shift();
+      roundLabel.textContent = `Round ${roundFrame.round}`;
+      previousState = cloneState(state);
+      state = roundFrame.state;
+      segmentStartedAt = performance.now();
+      playRoundEffects(roundFrame);
+      timer = window.setTimeout(() => playNextRound(result), tickLength);
+    };
+
+    const startFight = async () => {
+      winnerBanner.textContent = "Battle in progress";
+      log(`Дуель починається: ${rosterByKey[selectedSlots.left].aka} проти ${rosterByKey[selectedSlots.right].aka}.`);
+
+      try {
+        const response = await fetch("/duel/simulate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken,
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            fighter_a: selectedSlots.left,
+            fighter_b: selectedSlots.right
+          })
+        });
+
+        if (!response.ok) {
+          isRunning = false;
+          startButton.disabled = !hasCompleteSelection();
+          winnerBanner.textContent = "Simulation error";
+          log("Rails не зміг прорахувати дуель. Подивись логи.");
+          return;
+        }
+
+        const result = await response.json();
+        pendingRounds = groupRounds(result.events);
+        playNextRound(result);
+      } catch (error) {
+        isRunning = false;
+        startButton.disabled = !hasCompleteSelection();
+        winnerBanner.textContent = "Simulation error";
+        log("Запит на дуель впав ще до відповіді Rails.");
+      }
+    };
+
+    const chooseFighter = (key) => {
+      const otherSlot = nextSlotAfter(activeSlot);
+      selectedSlots[activeSlot] = key;
+
+      if (selectedSlots[otherSlot] === key) {
+        selectedSlots[otherSlot] = null;
+      }
+
+      activeSlot = selectedSlots[otherSlot] ? nextSlotAfter(activeSlot) : otherSlot;
+      reset({ preserveActiveSlot: true });
+    };
+
+    detailNode("[data-select-current]").addEventListener("click", () => {
+      chooseFighter(focusedHeroKey);
+    });
+
+    root.querySelectorAll("[data-focus-hero]").forEach((button) => {
+      button.addEventListener("click", () => {
+        focusedHeroKey = button.dataset.focusHero;
+        syncDetailPanel();
+        refreshSelectionUI();
+      });
+    });
+
+    root.querySelectorAll("[data-slot-target]").forEach((slotNode) => {
+      const activateSlot = () => {
+        activeSlot = slotNode.dataset.slotTarget;
+        refreshSelectionUI();
+      };
+
+      slotNode.addEventListener("click", activateSlot);
+      slotNode.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          activateSlot();
+        }
+      });
+    });
+
+    startButton.addEventListener("click", () => {
+      if (isRunning || !hasCompleteSelection()) return;
+      isRunning = true;
+      startButton.disabled = true;
+      reset();
+      isRunning = true;
+      startButton.disabled = true;
+      startFight();
+    });
+
+    resetButton.addEventListener("click", () => {
+      reset();
+    });
+
+    reset();
+    ensureRenderLoop();
+    if (hasCompleteSelection()) {
+      selectedRoster().forEach((fighter) => {
+        log(`${fighter.name} — «${fighter.aka}»: ${fighter.perk}.`);
+      });
+    }
+  })();
+</script>
+
+<nav class="bottom-nav">
+  <button class="bottom-nav-item is-active" type="button">
+    <span class="material-symbols-outlined">swords</span>
+    <span>DUEL</span>
+  </button>
+  <button
+    class="bottom-nav-item is-coming-soon"
+    type="button"
+    aria-disabled="true"
+    data-disabled-hint="In progress"
+    title="In progress"
+  >
+    <span class="material-symbols-outlined">architecture</span>
+    <span>FORGE</span>
+  </button>
+  <button
+    class="bottom-nav-item is-coming-soon"
+    type="button"
+    aria-disabled="true"
+    data-disabled-hint="In progress"
+    title="In progress"
+  >
+    <span class="material-symbols-outlined">menu_book</span>
+    <span>RECORDS</span>
+  </button>
+  <button
+    class="bottom-nav-item is-coming-soon"
+    type="button"
+    aria-disabled="true"
+    data-disabled-hint="In progress"
+    title="In progress"
+  >
+    <span class="material-symbols-outlined">inventory_2</span>
+    <span>VAULT</span>
+  </button>
+</nav>

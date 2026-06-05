@@ -1,0 +1,1784 @@
+Started GET "/" for ::1 at 2026-06-04 11:38:48 +0300
+  
+ActiveRecord::NoDatabaseError (Database not found: duelist_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Create the database by running:
+
+    bin/rails db:create
+
+- Verify that config/database.yml contains the correct database name.
+)
+Caused by: PG::ConnectionBad (connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "duelist_development" does not exist
+)
+
+Information for: ActiveRecord::NoDatabaseError (Database not found: duelist_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Create the database by running:
+
+    bin/rails db:create
+
+- Verify that config/database.yml contains the correct database name.
+):
+  
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:63:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.3) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.3) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.3) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.3) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.3) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "duelist_development" does not exist
+):
+  
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:751:in 'PG::Connection::Pollable#polling_loop'
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:795:in 'PG::Connection#async_connect_or_reset'
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:951:in 'PG::Connection.connect_to_hosts'
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:871:in 'PG::Connection.new'
+pg-1.6.3-arm64 (darwin) lib/pg.rb:88:in 'PG.connect'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.3) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.3) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.3) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.3) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.3) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2026-06-04 11:38:49 +0300
+  
+ActiveRecord::NoDatabaseError (Database not found: duelist_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Create the database by running:
+
+    bin/rails db:create
+
+- Verify that config/database.yml contains the correct database name.
+)
+Caused by: PG::ConnectionBad (connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "duelist_development" does not exist
+)
+
+Information for: ActiveRecord::NoDatabaseError (Database not found: duelist_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Create the database by running:
+
+    bin/rails db:create
+
+- Verify that config/database.yml contains the correct database name.
+):
+  
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:63:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.3) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.3) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.3) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.3) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.3) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "duelist_development" does not exist
+):
+  
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:751:in 'PG::Connection::Pollable#polling_loop'
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:795:in 'PG::Connection#async_connect_or_reset'
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:951:in 'PG::Connection.connect_to_hosts'
+pg-1.6.3-arm64 (darwin) lib/pg/connection.rb:871:in 'PG::Connection.new'
+pg-1.6.3-arm64 (darwin) lib/pg.rb:88:in 'PG.connect'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.3) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.3) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.3) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.3) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.3) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.3) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.3) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.3) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.3) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.3.0) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.3.0) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.3.0) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.2) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.6) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.6) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.2) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.6) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.3) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (8.0.2) lib/puma/configuration.rb:305:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (8.0.2) lib/puma/response.rb:79:in 'block in Puma::Response#handle_request'
+puma (8.0.2) lib/puma/thread_pool.rb:434:in 'Puma::ThreadPool#with_force_shutdown'
+puma (8.0.2) lib/puma/response.rb:78:in 'Puma::Response#handle_request'
+puma (8.0.2) lib/puma/server.rb:508:in 'Puma::Server#process_client'
+puma (8.0.2) lib/puma/server.rb:263:in 'block in Puma::Server#run'
+puma (8.0.2) lib/puma/thread_pool.rb:246:in 'block in Puma::ThreadPool#spawn_thread'
+  [1m[35mSQL (0.8ms)[0m  [1m[35mSET search_path TO public /*application='Duelist'*/[0m
+  [1m[35m (261.5ms)[0m  [1m[35mCREATE DATABASE "duelist_development" ENCODING = 'unicode' /*application='Duelist'*/[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mSET search_path TO public /*application='Duelist'*/[0m
+  [1m[35m (60.9ms)[0m  [1m[35mCREATE DATABASE "duelist_test" ENCODING = 'unicode' /*application='Duelist'*/[0m
+Started GET "/" for ::1 at 2026-06-04 11:39:23 +0300
+  [1m[35m (18.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Duelist'*/[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Duelist'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 5.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-06-04 11:39:23 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2026-06-04 11:42:01 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 7.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: www.example.com
+Started GET "/" for ::1 at 2026-06-04 11:48:15 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 7.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 11:48:17 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 11:52:10 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 7.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 11:52:14 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 11:52:40 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 11:58:24 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 7.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 11:58:25 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 11:58:42 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:01:39 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 7.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:01:41 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:01:59 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:04:14 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:04:16 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:04:24 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:06:39 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:06:41 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:06:59 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:09:02 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:11:05 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:11:07 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 39ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 36.1ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:11:19 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:24:11 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:24:12 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:25:35 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:25:37 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:25:51 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:27:19 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:27:20 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:27:43 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | GC: 0.0ms)
+Completed 200 OK in 18ms (Views: 8.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:27:45 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:28:22 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:28:24 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:29:30 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:29:31 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:29:55 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:30:34 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:31:01 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2026-06-04 12:31:49 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:31:53 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:32:37 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 11.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:32:37 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:34:05 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.2ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 1.1ms)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:34:07 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.7ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:34:18 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.7ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:34:59 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | GC: 0.6ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:35:01 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:36:28 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 2.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:36:30 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:36:39 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:38:37 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:38:39 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:38:50 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:41:43 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:42:10 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:42:11 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:42:55 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 31ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 26.8ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:45:33 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.1ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | GC: 0.2ms)
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:45:49 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:46:10 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 12:49:42 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:49:57 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.3ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:50:19 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 12:51:34 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"arena" => {}}
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:00:02 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 19.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 10.2ms)
+
+
+[ActionDispatch::HostAuthorization::DefaultResponseApp] Blocked hosts: www.example.com
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | GC: 0.8ms)
+Started GET "/" for ::1 at 2026-06-04 14:01:17 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 8.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:01:36 +0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Duelist'*/[0m
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:01:55 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:04:57 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "yura", "arena" => {"fighter_a" => "fredy", "fighter_b" => "yura"}}
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:10:02 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 6.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:10:46 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "denchik", "arena" => {"fighter_a" => "yura", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:12:00 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 10.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:12:10 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "yura", "arena" => {"fighter_a" => "fredy", "fighter_b" => "yura"}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:12:27 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "yura", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:12:38 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "yura", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:13:38 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:13:53 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "denchik", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "denchik"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:16:21 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:17:04 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:18:09 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:22:49 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | GC: 0.1ms)
+Completed 200 OK in 8ms (Views: 5.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:22:51 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:27:52 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:28:21 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "denchik", "arena" => {"fighter_a" => "yura", "fighter_b" => "denchik"}}
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:32:19 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 2.7ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | GC: 1.3ms)
+Completed 200 OK in 12ms (Views: 7.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.1ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 14:34:47 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 14:36:42 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "yura", "arena" => {"fighter_a" => "fredy", "fighter_b" => "yura"}}
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 15:00:27 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 3.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 15:00:32 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 15:20:54 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 12.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 15:21:03 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 15:23:54 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 6.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 15:24:03 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "kolyan", "arena" => {"fighter_a" => "denchik", "fighter_b" => "kolyan"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 15:26:17 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 2.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 5.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 15:27:36 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 15.3ms | GC: 0.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | GC: 0.6ms)
+Completed 200 OK in 22ms (Views: 18.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 15:27:47 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "fredy", "arena" => {"fighter_a" => "yura", "fighter_b" => "fredy"}}
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 15:30:09 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "denchik", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "denchik"}}
+Completed 200 OK in 14ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 15:30:27 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "denchik", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "denchik"}}
+Completed 200 OK in 12ms (Views: 4.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.8ms)
+
+
+Started GET "/" for ::1 at 2026-06-04 17:08:51 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 11.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 17:09:34 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "denchik", "arena" => {"fighter_a" => "yura", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 17:09:47 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "denchik", "arena" => {"fighter_a" => "yura", "fighter_b" => "denchik"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 17:10:01 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "denchik", "arena" => {"fighter_a" => "yura", "fighter_b" => "denchik"}}
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 17:10:37 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 9ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 17:10:49 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 17:11:19 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "denchik", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 19:41:16 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "yura", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "yura"}}
+Completed 200 OK in 16ms (Views: 2.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-04 19:41:48 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "kolyan", "arena" => {"fighter_a" => "yura", "fighter_b" => "kolyan"}}
+Completed 200 OK in 14ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:02:26 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 2.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 10.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:02:37 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 13ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:02:51 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 10ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:19:40 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 3.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:19:41 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:19:48 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "fredy", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.5ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:33:08 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 6.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.1ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 11.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:33:51 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 4.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:33:53 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:35:04 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 4.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:38:21 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:38:41 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:40:09 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:41:53 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:42:31 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 8.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 14.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:43:46 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 8.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | GC: 0.0ms)
+Completed 200 OK in 19ms (Views: 15.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:43:48 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.6ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 1.1ms)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:46:49 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 9.3ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.0ms | GC: 0.2ms)
+Completed 200 OK in 15ms (Views: 13.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:46:51 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:47:01 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:49:02 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 8.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.0ms | GC: 0.0ms)
+Completed 200 OK in 22ms (Views: 18.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:49:04 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:49:12 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:51:56 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 10:53:44 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 8.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:53:46 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.6ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:54:40 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "yura", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "yura"}}
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.2ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:54:53 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "yura", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "yura"}}
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 10:55:04 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "yura", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "yura"}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:24:45 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 7.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 10.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 11:24:58 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "yura", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "yura"}}
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:27:22 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 6.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 9.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:28:10 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 11:28:40 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:29:06 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 7.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | GC: 0.0ms)
+Completed 200 OK in 17ms (Views: 11.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:29:54 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 11:29:55 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:34:36 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | GC: 0.7ms)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 11:34:38 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.1ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:38:24 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 6.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 11:38:25 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 8ms (Views: 3.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:40:24 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 4.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:42:15 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 5.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:46:06 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 5.1ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | GC: 0.3ms)
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:47:01 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 5.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:47:31 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:48:42 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 7.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:50:03 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 7.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:55:06 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 8.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 11:55:26 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "kolyan", "arena" => {"fighter_a" => "yura", "fighter_b" => "kolyan"}}
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 11:55:36 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "kolyan", "arena" => {"fighter_a" => "yura", "fighter_b" => "kolyan"}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 11:58:03 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 5.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:00:58 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.2ms)
+Completed 200 OK in 14ms (Views: 5.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:01:05 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "fredy", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "fredy"}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:01:46 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:02:24 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 9.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.0ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 19.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:08:19 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 7.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:08:46 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "kolyan", "fighter_b" => "yura", "arena" => {"fighter_a" => "kolyan", "fighter_b" => "yura"}}
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.5ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:30:55 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.3ms)
+Completed 200 OK in 13ms (Views: 5.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:33:41 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:33:49 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "kolyan", "arena" => {"fighter_a" => "denchik", "fighter_b" => "kolyan"}}
+Completed 200 OK in 11ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.4ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:34:08 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yura", "fighter_b" => "yaroslav", "arena" => {"fighter_a" => "yura", "fighter_b" => "yaroslav"}}
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:34:53 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 9.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:34:58 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:35:06 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:35:13 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:35:22 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:36:53 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "fredy", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "fredy"}}
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:37:02 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "fredy", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "fredy"}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:37:12 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "yaroslav", "fighter_b" => "fredy", "arena" => {"fighter_a" => "yaroslav", "fighter_b" => "fredy"}}
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:39:30 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 5.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 8.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:39:36 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:41:18 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 4.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:41:24 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "denchik", "fighter_b" => "fredy", "arena" => {"fighter_a" => "denchik", "fighter_b" => "fredy"}}
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:43:45 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 4.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:43:50 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:44:03 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:44:11 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:44:27 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:44:32 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-06-05 12:45:50 +0300
+Processing by ArenaController#show as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering arena/show.html.erb within layouts/application
+  Rendered arena/show.html.erb within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 4.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:45:54 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 5ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:46:01 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/duel/simulate" for ::1 at 2026-06-05 12:46:09 +0300
+Processing by ArenaController#simulate as JSON
+  Parameters: {"fighter_a" => "fredy", "fighter_b" => "denchik", "arena" => {"fighter_a" => "fredy", "fighter_b" => "denchik"}}
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
