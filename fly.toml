@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for mp3players-arena on 2026-06-05T10:23:44Z
+# fly.toml app configuration file generated for mp3players-arena on 2026-06-05T10:47:44Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'mp3players-arena'
-primary_region = 'ams'
+primary_region = 'fra'
 console_command = '/rails/bin/rails console'
 
 [build]
