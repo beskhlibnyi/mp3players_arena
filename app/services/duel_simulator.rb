@@ -1,4 +1,5 @@
 class DuelSimulator
+  # test
   BOARD_MIN = 4.0
   BOARD_MAX = 96.0
   MAX_ROUNDS = 220
