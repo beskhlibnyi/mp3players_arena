@@ -531,6 +531,36 @@ body::before {
   gap: 12px;
 }
 
+.manual-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.manual-toolbar-copy {
+  min-width: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.manual-toolbar-copy strong {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.manual-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: min(100%, 260px);
+}
+
 .action-button,
 .slot-button {
   border: 0;

@@ -1,0 +1,868 @@
+<% content_for :title, "мп3плеєрс арена" %>
+<% content_for :head do %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700;800&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<% end %>
+<% avatar_images = {
+    "kolyan" => asset_path("avatars/kolyan.png"),
+    "denchik" => asset_path("avatars/denchik.png"),
+    "yaroslav" => asset_path("avatars/yaroslav.png"),
+    "yura" => asset_path("avatars/yura.png"),
+    "fredy" => asset_path("avatars/fredy.png"),
+  }
+%>
+
+<header class="topbar">
+  <div class="brand-mark">мп3плеєрс арена</div>
+  <div class="topbar-actions">
+    <button
+      class="topbar-button is-coming-soon"
+      type="button"
+      aria-label="Archive"
+      aria-disabled="true"
+      data-disabled-hint="In progress"
+      title="In progress"
+    >
+      <span class="material-symbols-outlined">history_edu</span>
+    </button>
+    <button
+      class="topbar-button is-coming-soon"
+      type="button"
+      aria-label="Profile"
+      aria-disabled="true"
+      data-disabled-hint="In progress"
+      title="In progress"
+    >
+      <span class="material-symbols-outlined">account_circle</span>
+    </button>
+  </div>
+</header>
+
+<div class="arena-page">
+  <div class="page-crumbs" aria-label="Breadcrumb">
+    <span>мп3плеєрс арена</span>
+    <span class="page-crumbs-separator">/</span>
+    <strong>forge</strong>
+  </div>
+
+  <section
+    class="duel-app"
+    data-forge-app
+    data-roster="<%= json_escape(@roster.to_json) %>"
+    data-avatar-images="<%= json_escape(avatar_images.to_json) %>"
+  >
+    <div class="match-strip">
+      <p class="match-strip-label">FORGE SESSION</p>
+      <div class="selected-duelists">
+        <div class="selected-slot" data-slot-summary="pilot" data-slot-target="pilot" role="button" tabindex="0" aria-pressed="true">
+          <span class="selected-slot-label">Пілот</span>
+          <strong data-slot-name="pilot">Не обрано</strong>
+          <small data-slot-role="pilot">Оберіть героя під контроль</small>
+        </div>
+        <div class="selected-slot selected-slot-vs">VS</div>
+        <div class="selected-slot" data-slot-summary="bot" data-slot-target="bot" role="button" tabindex="0" aria-pressed="false">
+          <span class="selected-slot-label">Бот</span>
+          <strong data-slot-name="bot">Не обрано</strong>
+          <small data-slot-role="bot">Оберіть суперника</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="duel-workspace">
+      <aside class="roster-column">
+        <div class="column-label">VAULT</div>
+        <div class="roster-icons" data-roster-icons>
+          <% @roster.each do |fighter| %>
+            <button
+              class="roster-icon roster-icon-<%= fighter[:theme_key] %>"
+              data-focus-hero="<%= fighter[:key] %>"
+              type="button"
+              aria-pressed="false"
+            >
+              <span class="roster-icon-avatar">
+                <% if avatar_images[fighter[:key]] %>
+                  <img class="roster-icon-photo" src="<%= avatar_images[fighter[:key]] %>" alt="<%= fighter[:name] %>">
+                <% else %>
+                  <span class="fighter-crest-letter"><%= fighter[:aka].first %></span>
+                <% end %>
+              </span>
+              <span class="roster-icon-name"><%= fighter[:name] %></span>
+            </button>
+          <% end %>
+        </div>
+      </aside>
+
+      <section class="arena-column">
+        <div class="controls">
+          <button class="action-button" data-action="start" disabled title="Select pilot and bot first">Start Forge</button>
+          <button class="action-button action-button-secondary" data-action="reset">Reset</button>
+        </div>
+
+        <div class="manual-toolbar">
+          <div class="manual-toolbar-copy">
+            <strong>Керування:</strong> `WASD` / стрілки рухають, `J` б'є, `K` тисне скіл.
+          </div>
+          <div class="manual-actions">
+            <button class="slot-button" data-action="basic" disabled>Basic `J`</button>
+            <button class="slot-button slot-button-secondary" data-action="skill" disabled>Skill `K`</button>
+          </div>
+        </div>
+
+        <div class="battle-layout">
+          <section class="arena-shell">
+            <div class="arena-header">
+              <p>Manual Arena</p>
+              <span data-round-label>Pick pilot and bot</span>
+            </div>
+
+            <div class="arena-board" data-board>
+              <div class="arena-effects" data-effects></div>
+            </div>
+          </section>
+
+          <section class="log-shell">
+            <div class="log-header">
+              <h2>Forge Feed</h2>
+              <span data-winner-banner>Waiting to start</span>
+            </div>
+            <div class="combat-log" data-log></div>
+          </section>
+        </div>
+      </section>
+
+      <aside class="fighter-card fighter-detail-panel is-hidden" data-detail-panel aria-hidden="true">
+        <div class="column-label">DOSSIER</div>
+        <div class="fighter-card-topline">
+          <span class="fighter-badge" data-detail-badge></span>
+          <p class="fighter-label" data-detail-style></p>
+        </div>
+
+        <div class="fighter-card-header">
+          <div class="fighter-avatar" data-detail-avatar></div>
+          <div class="fighter-heading">
+            <h2 data-detail-title></h2>
+            <p class="fighter-subtitle" data-detail-role></p>
+          </div>
+        </div>
+
+        <div class="fighter-selectors">
+          <button class="slot-button" data-select-current type="button">Обрати</button>
+        </div>
+
+        <div class="fighter-quick-stats">
+          <div class="fighter-quick-stat">
+            <span>Speed</span>
+            <strong data-detail-speed></strong>
+          </div>
+          <div class="fighter-quick-stat">
+            <span>Basic CD</span>
+            <strong data-detail-basic-cd></strong>
+          </div>
+          <div class="fighter-quick-stat">
+            <span>Skill CD</span>
+            <strong data-detail-skill-cd></strong>
+          </div>
+        </div>
+
+        <div class="fighter-abilities">
+          <div class="fighter-ability" data-detail-basic-card>
+            <span class="fighter-ability-label">Атака</span>
+            <strong data-detail-basic></strong>
+          </div>
+          <div class="fighter-ability" data-detail-skill-card>
+            <span class="fighter-ability-label">Скіл</span>
+            <strong data-detail-skill></strong>
+          </div>
+          <div class="fighter-ability fighter-ability-wide" data-detail-perk-card>
+            <span class="fighter-ability-label">Перк</span>
+            <strong data-detail-perk></strong>
+          </div>
+        </div>
+
+        <p class="perk-text" data-detail-perk-text></p>
+        <p class="fighter-flavor" data-detail-flavor></p>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<script>
+  (() => {
+    const root = document.querySelector("[data-forge-app]");
+    if (!root) return;
+
+    const roster = JSON.parse(root.dataset.roster);
+    const avatarImages = JSON.parse(root.dataset.avatarImages || "{}");
+    const rosterByKey = Object.fromEntries(roster.map((fighter) => [fighter.key, fighter]));
+    const board = root.querySelector("[data-board]");
+    const effectsLayer = root.querySelector("[data-effects]");
+    const logNode = root.querySelector("[data-log]");
+    const roundLabel = root.querySelector("[data-round-label]");
+    const winnerBanner = root.querySelector("[data-winner-banner]");
+    const detailPanel = root.querySelector("[data-detail-panel]");
+    const startButton = root.querySelector('[data-action="start"]');
+    const resetButton = root.querySelector('[data-action="reset"]');
+    const basicButton = root.querySelector('[data-action="basic"]');
+    const skillButton = root.querySelector('[data-action="skill"]');
+
+    const selectedSlots = { pilot: null, bot: null };
+    let activeSlot = "pilot";
+    let focusedHeroKey = null;
+    let pilot = null;
+    let bot = null;
+    let running = false;
+    let rafId = null;
+    let lastFrame = performance.now();
+    let logCooldown = 0;
+    let trailEffects = [];
+    let activeTrailSegments = [];
+
+    const themes = {
+      kolyan: { core: "#ffd166", glow: "#f59e0b", soft: "#fff0b3", letter: "#241100" },
+      yaroslav: { core: "#69dbff", glow: "#2563eb", soft: "#d9f8ff", letter: "#041a28" },
+      yura: { core: "#ff8a5b", glow: "#d62828", soft: "#ffe2d4", letter: "#290504" },
+      denchik: { core: "#bef264", glow: "#65a30d", soft: "#f0ffd4", letter: "#132005" },
+      fredy: { core: "#d8b4fe", glow: "#7c3aed", soft: "#f5e9ff", letter: "#170625" }
+    };
+
+    const keyState = {};
+
+    const CONTROLLED_SPEED_MULTIPLIER = 2.45;
+    const BOT_SPEED_MULTIPLIER = 2.1;
+
+    const hasCompleteSelection = () => Boolean(selectedSlots.pilot && selectedSlots.bot);
+    const fighterNode = (key) => board.querySelector(`[data-fighter="${key}"]`);
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+    const detailNode = (selector) => detailPanel.querySelector(selector);
+
+    const avatarMarkup = (fighter, imageClass = "fighter-photo", fallbackClass = "fighter-crest-letter") => {
+      const avatarUrl = avatarImages[fighter.key];
+      if (avatarUrl) return `<img class="${imageClass}" src="${avatarUrl}" alt="${fighter.name}">`;
+      return `<span class="${fallbackClass}">${fighter.aka[0]}</span>`;
+    };
+
+    const log = (message, accent = "") => {
+      const entry = document.createElement("p");
+      entry.className = `log-entry ${accent}`.trim();
+      entry.textContent = message;
+      logNode.prepend(entry);
+
+      while (logNode.children.length > 16) {
+        logNode.removeChild(logNode.lastChild);
+      }
+    };
+
+    const boardPoint = (fighter) => ({
+      x: (board.clientWidth * fighter.x) / 100,
+      y: (board.clientHeight * fighter.y) / 100
+    });
+
+    const createState = (fighter, side) => ({
+      ...fighter,
+      side,
+      x: side === "pilot" ? 22 : 78,
+      y: side === "pilot" ? 50 : 50,
+      vx: side === "pilot" ? 0 : (8.4 * BOT_SPEED_MULTIPLIER),
+      vy: side === "pilot" ? 0 : (6.8 * BOT_SPEED_MULTIPLIER),
+      hp: fighter.hp,
+      maxHp: fighter.hp,
+      mp: fighter.mp,
+      maxMp: fighter.mp,
+      attackCooldownMs: fighter.attack_cooldown * 420,
+      skillCooldownMs: fighter.skill_cooldown * 520,
+      attackCd: 0,
+      skillCd: 0,
+      markedByKolyan: false,
+      readByKolyan: false,
+      glimmerUntil: 0,
+      glimmerNextBonus: false,
+      vampAttacks: 0,
+      rampStacks: 0,
+      trailActiveUntil: 0,
+      trailSpawnAt: 0
+    });
+
+    const renderTrails = () => {
+      effectsLayer.querySelectorAll(".arena-trail-segment").forEach((node) => node.remove());
+      activeTrailSegments.forEach((segment) => {
+        const x1 = (board.clientWidth * segment.x1) / 100;
+        const y1 = (board.clientHeight * segment.y1) / 100;
+        const x2 = (board.clientWidth * segment.x2) / 100;
+        const y2 = (board.clientHeight * segment.y2) / 100;
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const length = Math.sqrt((dx * dx) + (dy * dy));
+        const angle = Math.atan2(dy, dx);
+        const theme = themes[segment.themeKey];
+        const node = document.createElement("div");
+        node.className = "arena-trail-segment";
+        node.style.setProperty("--trail-x", `${x1}px`);
+        node.style.setProperty("--trail-y", `${y1}px`);
+        node.style.setProperty("--trail-length", `${length}px`);
+        node.style.setProperty("--trail-angle", `${angle}rad`);
+        node.style.setProperty("--trail-core", theme.core);
+        node.style.setProperty("--trail-glow", theme.glow);
+        node.style.setProperty("--trail-soft", theme.soft);
+        effectsLayer.appendChild(node);
+      });
+    };
+
+    const render = () => {
+      [pilot, bot].filter(Boolean).forEach((fighter) => {
+        const node = fighterNode(fighter.key);
+        if (!node) return;
+        node.style.left = `calc(${fighter.x}% - 24px)`;
+        node.style.top = `calc(${fighter.y}% - 24px)`;
+        node.classList.toggle("is-down", fighter.hp <= 0);
+        node.classList.toggle("is-glimmer", fighter.glimmerUntil > performance.now());
+        node.classList.toggle("is-vamp", fighter.vampAttacks > 0);
+        node.classList.toggle("is-trailing", fighter.trailActiveUntil > performance.now());
+        node.dataset.rampTier = fighter.rampStacks || 0;
+      });
+      renderTrails();
+    };
+
+    const spawnEffect = (className, styles, duration) => {
+      const node = document.createElement("div");
+      node.className = className;
+      Object.entries(styles).forEach(([property, value]) => node.style.setProperty(property, value));
+      effectsLayer.appendChild(node);
+      window.setTimeout(() => node.remove(), duration);
+    };
+
+    const spawnNamedEffect = (effectId, attacker, defender) => {
+      if (!effectId || !attacker || !defender) return;
+      const theme = themes[attacker.theme_key];
+      const from = boardPoint(attacker);
+      const to = boardPoint(defender);
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+      const angle = Math.atan2(dy, dx);
+      const length = Math.sqrt((dx * dx) + (dy * dy));
+      const lineStyles = {
+        "--effect-x": `${from.x}px`,
+        "--effect-y": `${from.y}px`,
+        "--effect-angle": `${angle}rad`,
+        "--effect-length": `${Math.max(34, length - 14)}px`,
+        "--effect-core": theme.core,
+        "--effect-glow": theme.glow,
+        "--effect-soft": theme.soft
+      };
+      const pointStyles = {
+        "--effect-x": `${to.x}px`,
+        "--effect-y": `${to.y}px`,
+        "--effect-angle": `${angle}rad`,
+        "--effect-core": theme.core,
+        "--effect-glow": theme.glow,
+        "--effect-soft": theme.soft
+      };
+      const actorStyles = {
+        "--effect-x": `${from.x}px`,
+        "--effect-y": `${from.y}px`,
+        "--effect-angle": `${angle}rad`,
+        "--effect-core": theme.core,
+        "--effect-glow": theme.glow,
+        "--effect-soft": theme.soft
+      };
+
+      switch (effectId) {
+        case "kolyan-basic": spawnEffect("arena-effect arena-effect-kolyan-basic", lineStyles, 320); break;
+        case "kolyan-skill": spawnEffect("arena-effect arena-effect-kolyan-skill", lineStyles, 460); break;
+        case "kolyan-perk": spawnEffect("arena-effect arena-effect-kolyan-perk", actorStyles, 360); break;
+        case "kolyan-mark": spawnEffect("arena-effect arena-effect-kolyan-mark", pointStyles, 420); break;
+        case "kolyan-read": spawnEffect("arena-effect arena-effect-kolyan-read", pointStyles, 420); break;
+        case "yaroslav-basic": spawnEffect("arena-effect arena-effect-yaroslav-basic", lineStyles, 280); break;
+        case "yaroslav-skill": spawnEffect("arena-effect arena-effect-yaroslav-skill", lineStyles, 360); break;
+        case "yaroslav-glimmer-on": spawnEffect("arena-effect arena-effect-yaroslav-glimmer-on", actorStyles, 420); break;
+        case "yaroslav-glimmer-tick": spawnEffect("arena-effect arena-effect-yaroslav-glimmer-tick", actorStyles, 360); break;
+        case "yaroslav-glimmer-return": spawnEffect("arena-effect arena-effect-yaroslav-glimmer-return", actorStyles, 420); break;
+        case "yura-basic": spawnEffect("arena-effect arena-effect-yura-basic", lineStyles, 300); break;
+        case "yura-skill": spawnEffect("arena-effect arena-effect-yura-skill", lineStyles, 440); break;
+        case "yura-vamp-on": spawnEffect("arena-effect arena-effect-yura-vamp-on", actorStyles, 420); break;
+        case "yura-vamp-drain": spawnEffect("arena-effect arena-effect-yura-vamp-drain", lineStyles, 420); break;
+        case "denchik-basic": spawnEffect("arena-effect arena-effect-denchik-basic", lineStyles, 290); break;
+        case "denchik-skill": spawnEffect("arena-effect arena-effect-denchik-skill", lineStyles, 420); break;
+        case "denchik-ramp": spawnEffect("arena-effect arena-effect-denchik-ramp", actorStyles, 360); break;
+        case "fredy-basic": spawnEffect("arena-effect arena-effect-fredy-basic", lineStyles, 300); break;
+        case "fredy-skill": spawnEffect("arena-effect arena-effect-fredy-skill", lineStyles, 420); break;
+        case "fredy-trail-on": spawnEffect("arena-effect arena-effect-fredy-trail-on", actorStyles, 380); break;
+        case "fredy-trail-arm": spawnEffect("arena-effect arena-effect-fredy-trail-arm", actorStyles, 320); break;
+        case "fredy-trail-hit": spawnEffect("arena-effect arena-effect-fredy-trail-hit", pointStyles, 520); break;
+        default: spawnEffect("arena-effect arena-effect-impact", pointStyles, 300);
+      }
+    };
+
+    const createBoardFighters = () => {
+      board.querySelectorAll(".arena-fighter").forEach((node) => node.remove());
+      [pilot, bot].filter(Boolean).forEach((fighter) => {
+        const theme = themes[fighter.theme_key];
+        const node = document.createElement("div");
+        node.className = "arena-fighter";
+        node.dataset.fighter = fighter.key;
+        node.style.setProperty("--fighter-core", theme.core);
+        node.style.setProperty("--fighter-glow", theme.glow);
+        node.style.setProperty("--fighter-soft", theme.soft);
+        node.style.setProperty("--fighter-letter", theme.letter);
+        node.innerHTML = avatarMarkup(fighter, "fighter-token-photo", "fighter-token-label");
+        board.appendChild(node);
+      });
+      render();
+    };
+
+    const resetMatch = () => {
+      running = false;
+      pilot = null;
+      bot = null;
+      activeTrailSegments = [];
+      createBoardFighters();
+      roundLabel.textContent = hasCompleteSelection() ? "Ready to forge" : "Pick pilot and bot";
+      winnerBanner.textContent = hasCompleteSelection() ? "Waiting to start" : "Choose two fighters";
+      logNode.innerHTML = "";
+      log(hasCompleteSelection() ? "Forge setup ready. Start when you want control." : "Оберіть пілота і бота для ручного бою.");
+      startButton.disabled = !hasCompleteSelection();
+      basicButton.disabled = true;
+      skillButton.disabled = true;
+    };
+
+    const syncDetailPanel = () => {
+      const fighter = rosterByKey[focusedHeroKey];
+      if (!fighter) {
+        detailPanel.className = "fighter-card fighter-detail-panel is-hidden";
+        detailPanel.setAttribute("aria-hidden", "true");
+        return;
+      }
+
+      detailPanel.setAttribute("aria-hidden", "false");
+      detailPanel.className = `fighter-card fighter-detail-panel fighter-card-${fighter.theme_key}`;
+      detailNode("[data-detail-badge]").textContent = fighter.key.toUpperCase();
+      detailNode("[data-detail-style]").textContent = fighter.style;
+      detailNode("[data-detail-avatar]").className = `fighter-avatar fighter-avatar-${fighter.theme_key}`;
+      detailNode("[data-detail-avatar]").innerHTML = avatarMarkup(fighter);
+      detailNode("[data-detail-title]").textContent = `${fighter.name} a.k.a. «${fighter.aka}»`;
+      detailNode("[data-detail-role]").textContent = fighter.role;
+      detailNode("[data-detail-speed]").textContent = fighter.speed;
+      detailNode("[data-detail-basic-cd]").textContent = fighter.attack_cooldown;
+      detailNode("[data-detail-skill-cd]").textContent = fighter.skill_cooldown;
+      detailNode("[data-detail-basic]").textContent = fighter.basic_attack;
+      detailNode("[data-detail-skill]").textContent = fighter.skill_name;
+      detailNode("[data-detail-perk]").textContent = fighter.perk;
+      detailNode("[data-detail-basic-card]").dataset.tooltip = fighter.basic_text;
+      detailNode("[data-detail-skill-card]").dataset.tooltip = fighter.skill_text;
+      detailNode("[data-detail-perk-card]").dataset.tooltip = fighter.perk_text;
+      detailNode("[data-detail-perk-text]").textContent = fighter.perk_text;
+      detailNode("[data-detail-flavor]").textContent = fighter.flavor;
+
+      const selectButton = detailNode("[data-select-current]");
+      selectButton.classList.toggle("is-active-left", selectedSlots.pilot === fighter.key);
+      selectButton.classList.toggle("is-active-right", selectedSlots.bot === fighter.key);
+      selectButton.textContent = selectedSlots.pilot === fighter.key ? "Обрано як пілота" : selectedSlots.bot === fighter.key ? "Обрано як бота" : `Обрати в ${activeSlot === "pilot" ? "пілота" : "бота"}`;
+    };
+
+    const refreshSelectionUI = () => {
+      ["pilot", "bot"].forEach((slot) => {
+        const fighter = rosterByKey[selectedSlots[slot]];
+        const slotName = document.querySelector(`[data-slot-name="${slot}"]`);
+        const slotRole = document.querySelector(`[data-slot-role="${slot}"]`);
+        const slotNode = document.querySelector(`[data-slot-summary="${slot}"]`);
+        if (fighter) {
+          slotName.textContent = `${fighter.name} a.k.a. «${fighter.aka}»`;
+          slotRole.textContent = fighter.role;
+        } else {
+          slotName.textContent = "Не обрано";
+          slotRole.textContent = slot === "pilot" ? "Оберіть героя під контроль" : "Оберіть суперника";
+        }
+        slotNode.classList.toggle("is-empty", !fighter);
+        slotNode.classList.toggle("is-active-slot", activeSlot === slot);
+      });
+
+      root.querySelectorAll("[data-focus-hero]").forEach((button) => {
+        const key = button.dataset.focusHero;
+        button.classList.toggle("is-slot-left", selectedSlots.pilot === key);
+        button.classList.toggle("is-slot-right", selectedSlots.bot === key);
+        button.classList.toggle("is-focused", focusedHeroKey === key);
+      });
+
+      startButton.disabled = !hasCompleteSelection() || running;
+      syncDetailPanel();
+    };
+
+    const addRamp = (fighter, sourceLabel) => {
+      if (fighter.key !== "denchik") return;
+      fighter.rampStacks = Math.min(6, fighter.rampStacks + 1);
+      fighter.speed = fighter.base_speed + (fighter.rampStacks * 0.35);
+      spawnNamedEffect("denchik-ramp", fighter, fighter);
+      log(`«${fighter.perk}» дає Розгін ${fighter.rampStacks}/6 після ${sourceLabel}.`, fighter.key);
+    };
+
+    const performHit = (attacker, defender, type) => {
+      if (!running || !attacker || !defender) return;
+      if (attacker.hp <= 0 || defender.hp <= 0) return;
+
+      const now = performance.now();
+      const skill = type === "skill";
+      const effect = skill ? attacker.skill_effect : attacker.basic_effect;
+      const attackName = skill ? attacker.skill_name : attacker.basic_attack;
+      const min = skill ? attacker.skill_min : attacker.basic_min;
+      const max = skill ? attacker.skill_max : attacker.basic_max;
+      let damage = min + Math.floor(Math.random() * ((max - min) + 1));
+
+      if (attacker.key === "kolyan") {
+        if (defender.readByKolyan) {
+          damage += 4;
+          defender.readByKolyan = false;
+          attacker.mp = clamp(attacker.mp + 3, 0, attacker.maxMp);
+          spawnNamedEffect("kolyan-read", attacker, defender);
+        }
+        if (defender.markedByKolyan) {
+          damage += 5;
+          defender.markedByKolyan = false;
+          spawnNamedEffect("kolyan-mark", attacker, defender);
+        }
+      }
+
+      if (attacker.key === "yaroslav" && attacker.glimmerNextBonus) {
+        damage += 4;
+        attacker.glimmerNextBonus = false;
+        spawnNamedEffect("yaroslav-glimmer-return", attacker, attacker);
+      }
+
+      if (attacker.key === "yura" && attacker.vampAttacks > 0) {
+        const heal = Math.max(1, Math.floor(damage * 0.5));
+        attacker.hp = clamp(attacker.hp + heal, 0, attacker.maxHp);
+        attacker.vampAttacks -= 1;
+        spawnNamedEffect("yura-vamp-drain", attacker, defender);
+      }
+
+      if (attacker.key === "denchik") {
+        damage += attacker.rampStacks;
+      }
+
+      defender.hp = clamp(defender.hp - damage, 0, defender.maxHp);
+
+      if (skill) {
+        attacker.mp = clamp(attacker.mp - attacker.skill_cost, 0, attacker.maxMp);
+        attacker.skillCd = attacker.skillCooldownMs;
+        attacker.attackCd = attacker.attackCooldownMs;
+      } else {
+        attacker.attackCd = attacker.attackCooldownMs;
+        attacker.mp = clamp(attacker.mp + 4, 0, attacker.maxMp);
+      }
+
+      spawnNamedEffect(effect, attacker, defender);
+      log(`${attacker.aka} використовує «${attackName}» на ${damage} шкоди.`, attacker.key);
+
+      if (attacker.key === "kolyan" && skill) {
+        defender.markedByKolyan = true;
+        spawnNamedEffect("kolyan-mark", attacker, defender);
+      }
+      if (defender.key === "kolyan" && skill) {
+        attacker.readByKolyan = true;
+        spawnNamedEffect("kolyan-read", defender, attacker);
+      }
+      if (attacker.key === "yaroslav" && skill) {
+        attacker.glimmerUntil = now + 2200;
+        spawnNamedEffect("yaroslav-glimmer-on", attacker, attacker);
+      }
+      if (attacker.key === "yura" && skill) {
+        attacker.vampAttacks = 2;
+        spawnNamedEffect("yura-vamp-on", attacker, attacker);
+      }
+      if (attacker.key === "fredy" && skill) {
+        attacker.trailActiveUntil = now + 5000;
+        attacker.trailSpawnAt = now;
+        spawnNamedEffect("fredy-trail-on", attacker, attacker);
+      }
+
+      addRamp(attacker, "влучання");
+      addRamp(defender, "отриманого удару");
+
+      if (defender.hp <= 0) {
+        running = false;
+        winnerBanner.textContent = `${attacker.aka} wins`;
+        roundLabel.textContent = "Finished";
+        log(`Перемагає ${attacker.name} — «${attacker.aka}».`, attacker.key);
+        basicButton.disabled = true;
+        skillButton.disabled = true;
+        startButton.disabled = false;
+      }
+    };
+
+    const maybeBotAttack = () => {
+      if (!running || !bot || !pilot || bot.hp <= 0 || pilot.hp <= 0) return;
+      if (bot.attackCd > 0) return;
+      if (pilot.glimmerUntil > performance.now()) {
+        spawnNamedEffect(bot.basic_effect, bot, pilot);
+        spawnNamedEffect("yaroslav-glimmer-tick", pilot, pilot);
+        bot.attackCd = bot.attackCooldownMs * 0.75;
+        log(`${bot.aka} не може дістати ${pilot.aka} крізь Глімер.`, bot.key);
+        return;
+      }
+
+      const canSkill = bot.skillCd <= 0 && bot.mp >= bot.skill_cost && Math.random() < bot.skill_chance;
+      performHit(bot, pilot, canSkill ? "skill" : "basic");
+    };
+
+    const activatePlayerAttack = (type) => {
+      if (!running || !pilot || !bot) return;
+      if (pilot.hp <= 0 || bot.hp <= 0) return;
+      if (type === "basic" && pilot.attackCd > 0) return;
+      if (type === "skill" && (pilot.skillCd > 0 || pilot.mp < pilot.skill_cost)) return;
+      if (bot.glimmerUntil > performance.now()) {
+        spawnNamedEffect(type === "skill" ? pilot.skill_effect : pilot.basic_effect, pilot, bot);
+        spawnNamedEffect("yaroslav-glimmer-tick", bot, bot);
+        if (type === "basic") {
+          pilot.attackCd = pilot.attackCooldownMs;
+        } else {
+          pilot.attackCd = pilot.attackCooldownMs;
+          pilot.skillCd = pilot.skillCooldownMs;
+          pilot.mp = clamp(pilot.mp - pilot.skill_cost, 0, pilot.maxMp);
+        }
+        log(`${pilot.aka} не може пробити Глімер у ${bot.aka}.`, pilot.key);
+        return;
+      }
+      performHit(pilot, bot, type);
+    };
+
+    const updateTrails = (now) => {
+      activeTrailSegments = activeTrailSegments.filter((segment) => segment.expiresAt > now && !segment.hit);
+      [pilot, bot].filter(Boolean).forEach((fighter) => {
+        if (fighter.key !== "fredy") return;
+        if (fighter.trailActiveUntil <= now) return;
+        if (now - fighter.trailSpawnAt < 220) return;
+        fighter.trailSpawnAt = now;
+        activeTrailSegments.push({
+          owner: fighter.side,
+          themeKey: fighter.theme_key,
+          x1: fighter.prevX ?? fighter.x,
+          y1: fighter.prevY ?? fighter.y,
+          x2: fighter.x,
+          y2: fighter.y,
+          expiresAt: now + 5000,
+          hit: false
+        });
+        activeTrailSegments = activeTrailSegments.slice(-10);
+        spawnNamedEffect("fredy-trail-arm", fighter, fighter);
+      });
+    };
+
+    const segmentHit = (ax1, ay1, ax2, ay2, bx1, by1, bx2, by2) => {
+      const orientation = (x1, y1, x2, y2, x3, y3) => ((x2 - x1) * (y3 - y1)) - ((y2 - y1) * (x3 - x1));
+      const o1 = orientation(ax1, ay1, ax2, ay2, bx1, by1);
+      const o2 = orientation(ax1, ay1, ax2, ay2, bx2, by2);
+      const o3 = orientation(bx1, by1, bx2, by2, ax1, ay1);
+      const o4 = orientation(bx1, by1, bx2, by2, ax2, ay2);
+      return (o1 * o2 < 0) && (o3 * o4 < 0);
+    };
+
+    const checkTrailHits = () => {
+      if (!pilot || !bot) return;
+      [[pilot, bot], [bot, pilot]].forEach(([source, target]) => {
+        if (target.glimmerUntil > performance.now()) return;
+        const startX = target.prevX ?? target.x;
+        const startY = target.prevY ?? target.y;
+        activeTrailSegments.forEach((segment) => {
+          if (segment.hit || segment.owner === target.side) return;
+          if (!segmentHit(startX, startY, target.x, target.y, segment.x1, segment.y1, segment.x2, segment.y2)) return;
+          segment.hit = true;
+          target.hp = clamp(target.hp - 5, 0, target.maxHp);
+          spawnNamedEffect("fredy-trail-hit", source, target);
+          log(`${target.aka} врізається в Шлейф і отримує 5 шкоди.`, "fredy");
+          if (target.hp <= 0) {
+            running = false;
+            winnerBanner.textContent = `${source.aka} wins`;
+            roundLabel.textContent = "Finished";
+            basicButton.disabled = true;
+            skillButton.disabled = true;
+            startButton.disabled = false;
+          }
+        });
+      });
+    };
+
+    const updateMovement = (fighter, dt, controlled) => {
+      fighter.prevX = fighter.x;
+      fighter.prevY = fighter.y;
+      if (controlled) {
+        let dx = 0;
+        let dy = 0;
+        if (keyState.ArrowUp || keyState.KeyW) dy -= 1;
+        if (keyState.ArrowDown || keyState.KeyS) dy += 1;
+        if (keyState.ArrowLeft || keyState.KeyA) dx -= 1;
+        if (keyState.ArrowRight || keyState.KeyD) dx += 1;
+        const length = Math.hypot(dx, dy) || 1;
+        const actualSpeed = fighter.speed * CONTROLLED_SPEED_MULTIPLIER;
+        fighter.x = clamp(fighter.x + ((dx / length) * actualSpeed * dt), 4, 96);
+        fighter.y = clamp(fighter.y + ((dy / length) * actualSpeed * dt), 4, 96);
+      } else {
+        fighter.x += fighter.vx * dt;
+        fighter.y += fighter.vy * dt;
+        if (fighter.x < 4 || fighter.x > 96) {
+          fighter.x = clamp(fighter.x, 4, 96);
+          fighter.vx *= -1;
+        }
+        if (fighter.y < 4 || fighter.y > 96) {
+          fighter.y = clamp(fighter.y, 4, 96);
+          fighter.vy *= -1;
+        }
+      }
+    };
+
+    const updateCooldowns = (fighter, dt) => {
+      fighter.attackCd = Math.max(0, fighter.attackCd - (dt * 1000));
+      fighter.skillCd = Math.max(0, fighter.skillCd - (dt * 1000));
+    };
+
+    const updateTimedStates = (fighter, now, dt) => {
+      if (fighter.key === "yaroslav" && fighter.glimmerUntil > now) {
+        fighter.hp = clamp(fighter.hp + (dt * 6), 0, fighter.maxHp);
+      }
+      if (fighter.key === "yaroslav" && fighter.glimmerUntil > 0 && fighter.glimmerUntil <= now) {
+        fighter.glimmerUntil = 0;
+        fighter.glimmerNextBonus = true;
+        spawnNamedEffect("yaroslav-glimmer-return", fighter, fighter);
+        log(`${fighter.aka} виходить із Глімера і готує сильніший удар.`, fighter.key);
+      }
+    };
+
+    const loop = (now) => {
+      const dt = Math.min(0.04, (now - lastFrame) / 1000);
+      lastFrame = now;
+
+      if (running && pilot && bot) {
+        updateMovement(pilot, dt, true);
+        updateMovement(bot, dt, false);
+        updateCooldowns(pilot, dt);
+        updateCooldowns(bot, dt);
+        updateTimedStates(pilot, now, dt);
+        updateTimedStates(bot, now, dt);
+        updateTrails(now);
+        checkTrailHits();
+        maybeBotAttack();
+        roundLabel.textContent = `HP ${Math.round(pilot.hp)} vs ${Math.round(bot.hp)}`;
+      }
+
+      render();
+      rafId = window.requestAnimationFrame(loop);
+    };
+
+    const startForge = () => {
+      const pilotProfile = rosterByKey[selectedSlots.pilot];
+      const botProfile = rosterByKey[selectedSlots.bot];
+      if (!pilotProfile || !botProfile) return;
+
+      pilot = createState(pilotProfile, "pilot");
+      bot = createState(botProfile, "bot");
+      running = true;
+      activeTrailSegments = [];
+      createBoardFighters();
+      winnerBanner.textContent = "Forge in progress";
+      roundLabel.textContent = "Fight";
+      logNode.innerHTML = "";
+      log(`${pilot.aka} бере ручний контроль проти ${bot.aka}.`, pilot.key);
+      startButton.disabled = true;
+      basicButton.disabled = false;
+      skillButton.disabled = false;
+    };
+
+    const chooseFighter = (key) => {
+      const otherSlot = activeSlot === "pilot" ? "bot" : "pilot";
+      selectedSlots[activeSlot] = key;
+      if (selectedSlots[otherSlot] === key) selectedSlots[otherSlot] = null;
+      activeSlot = selectedSlots[otherSlot] ? otherSlot : otherSlot;
+      resetMatch();
+      refreshSelectionUI();
+    };
+
+    detailNode("[data-select-current]").addEventListener("click", () => {
+      if (!focusedHeroKey) return;
+      chooseFighter(focusedHeroKey);
+    });
+
+    root.querySelectorAll("[data-focus-hero]").forEach((button) => {
+      button.addEventListener("click", () => {
+        focusedHeroKey = button.dataset.focusHero;
+        refreshSelectionUI();
+      });
+    });
+
+    root.querySelectorAll("[data-slot-target]").forEach((slotNode) => {
+      const activateSlot = () => {
+        activeSlot = slotNode.dataset.slotTarget;
+        refreshSelectionUI();
+      };
+
+      slotNode.addEventListener("click", activateSlot);
+      slotNode.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          activateSlot();
+        }
+      });
+    });
+
+    startButton.addEventListener("click", startForge);
+    resetButton.addEventListener("click", () => {
+      selectedSlots.pilot = null;
+      selectedSlots.bot = null;
+      focusedHeroKey = null;
+      activeSlot = "pilot";
+      refreshSelectionUI();
+      resetMatch();
+    });
+    basicButton.addEventListener("click", () => activatePlayerAttack("basic"));
+    skillButton.addEventListener("click", () => activatePlayerAttack("skill"));
+
+    window.addEventListener("keydown", (event) => {
+      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(event.code)) {
+        event.preventDefault();
+      }
+      keyState[event.code] = true;
+      if (event.code === "KeyJ") activatePlayerAttack("basic");
+      if (event.code === "KeyK") activatePlayerAttack("skill");
+    });
+
+    window.addEventListener("keyup", (event) => {
+      keyState[event.code] = false;
+    });
+
+    refreshSelectionUI();
+    resetMatch();
+    rafId = window.requestAnimationFrame((now) => {
+      lastFrame = now;
+      loop(now);
+    });
+  })();
+</script>
+
+<nav class="bottom-nav">
+  <a class="bottom-nav-item" href="<%= root_path %>">
+    <span class="material-symbols-outlined">swords</span>
+    <span>AUTO-BATTLE</span>
+  </a>
+  <a class="bottom-nav-item is-active" href="<%= forge_path %>">
+    <span class="material-symbols-outlined">architecture</span>
+    <span>FORGE</span>
+  </a>
+  <button
+    class="bottom-nav-item is-coming-soon"
+    type="button"
+    aria-disabled="true"
+    data-disabled-hint="In progress"
+    title="In progress"
+  >
+    <span class="material-symbols-outlined">menu_book</span>
+    <span>RECORDS</span>
+  </button>
+  <button
+    class="bottom-nav-item is-coming-soon"
+    type="button"
+    aria-disabled="true"
+    data-disabled-hint="In progress"
+    title="In progress"
+  >
+    <span class="material-symbols-outlined">inventory_2</span>
+    <span>VAULT</span>
+  </button>
+</nav>

@@ -78,7 +78,7 @@
   <div class="page-crumbs" aria-label="Breadcrumb">
     <span>мп3плеєрс арена</span>
     <span class="page-crumbs-separator">/</span>
-    <strong>duel</strong>
+    <strong>auto-battle</strong>
   </div>
 
   <section
@@ -909,20 +909,14 @@
 </script>
 
 <nav class="bottom-nav">
-  <button class="bottom-nav-item is-active" type="button">
+  <a class="bottom-nav-item is-active" href="<%= root_path %>">
     <span class="material-symbols-outlined">swords</span>
-    <span>DUEL</span>
-  </button>
-  <button
-    class="bottom-nav-item is-coming-soon"
-    type="button"
-    aria-disabled="true"
-    data-disabled-hint="In progress"
-    title="In progress"
-  >
+    <span>AUTO-BATTLE</span>
+  </a>
+  <a class="bottom-nav-item" href="<%= forge_path %>">
     <span class="material-symbols-outlined">architecture</span>
     <span>FORGE</span>
-  </button>
+  </a>
   <button
     class="bottom-nav-item is-coming-soon"
     type="button"
